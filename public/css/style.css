@@ -223,7 +223,7 @@ html, body {
   .background-image-div {
     position: relative;
     width: 100%;
-    height: 400px; /* điều chỉnh chiều cao tùy ý */
+    height: 500px !important; /* điều chỉnh chiều cao tùy ý */
     background-image: url('../../public/img/ant_product_bg.webp');
     background-size: cover;
     background-position: center;
@@ -237,6 +237,7 @@ html, body {
     text-align: center;
     display: flex;
   }
+  
   
   .item-poster img {
     max-width: 80%;

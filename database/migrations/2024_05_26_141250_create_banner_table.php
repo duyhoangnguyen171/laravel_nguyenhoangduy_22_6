@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name', 1000);
             $table->string('link', 1000);
             $table->string('position', 50);
+            $table->unsignedInteger('sort_order')->default(1);
             $table->tinyInteger("status")->default(2);
             $table->string('description', 255)->nullable();
             $table->unsignedInteger('created_by');

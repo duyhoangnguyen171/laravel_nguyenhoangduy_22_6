@@ -12,10 +12,10 @@ class HomeController extends Controller
     public function index()
     {
         //$list = DB::table('menu')->get();
-        $list = Menu::get();
-        foreach($list as $row){
-            echo "<h1>".$row->name."</h1>";
-        }
+        // $list = Menu::get();
+        // foreach($list as $row){
+        //     echo "<h1>".$row->name."</h1>";
+        // }
         return view('frontend.home');
     }
 }
