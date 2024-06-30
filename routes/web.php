@@ -4,6 +4,8 @@ use App\Http\Controllers\backend\BannerController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\frontend\ContactController as LienheController;
 use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\PostController as TintucController;
 use App\Http\Controllers\frontend\ProductController as SanphamController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,17 +18,43 @@ use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\TopicController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\frontend\AboutController;
 
-Route::get('/',[HomeController::class,'index'])->name('site.home');   // Trang Chu
-Route::get('product',[SanphamController::class,'index'])->name('site.product');// san pham all
+//Home
+Route::get('/products', [SanphamController::class, 'index'])->name('products.index');Route::get('/',[HomeController::class,'index'])->name('site.home');   // Trang Chu
+Route::get('/products/{slug}', [SanphamController::class, 'category'])->name('products.category');
+//Route::get('tintuc-home',[TintucController::class,'index'])->name('site.home');// lien he
+//Product All
+Route::get('san-pham',[SanphamController::class,'index'])->name('site.product');// san pham all
+
+//Product category
 Route::get('danh-muc/{slug}',[SanphamController::class,'category'])->name('site.product.category'); 
+
 Route::get('product-detail/{slug}',[SanphamController::class,'product_detail'])->name('site.product.detail'); // chi tiet
 Route::get('contact',[LienheController::class,'index'])->name('site.contact');// lien he
+Route::get('tin-tuc',[TintucController::class,'index'])->name('site.post');// lien he
+Route::get('tin-tuc',[TintucController::class,'post'])->name('site.post_item');// post all
+Route::get('post-detail/{slug}', [TintucController::class, 'detail'])->name('site.post.detail');
+Route::get('about', [AboutController::class, 'index'])->name('site.about');
 
-Route::prefix("admin")->group(function(){
-    Route::get("/", [DashboardController::class, "index"])->name("admin.dashboard.index");
+Route::get('cart/addcart',[CartController::class,'addcart'])->name('site.cart.addcart');// lien he
+Route::get('gio-hang',[CartController::class,'index'])->name('site.cart.index');// lien he
+Route::post('cart-update',[CartController::class,'update'])->name('site.cart.update');
+Route::get('cart-delete/{id}',[CartController::class,'delete'])->name('site.cart.delete');// li// lien he
+Route::get('thanh-toan',[CartController::class,'checkout'])->name('site.cart.checkout');
+Route::post('thong-bao',[CartController::class,'docheckout'])->name('site.cart.docheckout');// l/ li// lien he
+
+// DANG NHAP
+Route::get('dang-nhap',[AuthController::class,'getlogin'])->name('website.getlogin');// login
+Route::post('dang-nhap',[AuthController::class,'dologin'])->name('website.dologin');// login
+Route::get('dang-xuat',[AuthController::class,'logout'])->name('website.logout');// login
+
+
+Route::prefix("admin")->middleware('middleauth')->group(function(){
+    Route::get("/", [DashboardController::class, "index"])->name("admin.dashboard");
     
-    Route::prefix("product")->group(function(){
+    Route::prefix("product")->middleware('middleauth')->group(function(){
         Route::get("/", [ProductController::class, "index"])->name("admin.product.index");
         Route::get("trash", [ProductController::class, "trash"])->name("admin.product.trash");
         

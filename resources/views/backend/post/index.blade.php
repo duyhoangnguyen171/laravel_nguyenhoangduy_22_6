@@ -40,8 +40,10 @@
                             <th class="text-center" style="width:40px" scope="col">#</th>
                             <th class="text-center" style="width:90px" scope="col">Hình</th>
                             <th scope="col">Tiêu đề bài viết</th>
-                            <th scope="col">Chủ đề</th>
+                            <th scope="col" style="width:40px">Chủ đề</th>
                             <th scope="col">Kiểu</th>
+                            <th scope="col">Mô tả</th>
+                            <th class="col" style="width:300px">Chi tiết</th>
                             <th class="text-center" style="width:190px" scope="col">Chức năng</th>
                             <th class="text-center" style="width:20px" scope="col">ID</th>
                         </tr>
@@ -61,6 +63,8 @@
                             <td>{{ $row->title }}</td>
                             <td>{{ $row->topicname }}</td>
                             <td>{{ $row->type }}</td>
+                            <td>{{ $row->description }}</td>
+                            <td>{{ $row->detail }}</td>
                             <td class="text-center">
                                 @if($row->status==1)
                                 <a href="{{route ('admin.post.status', $args)}}" class="btn btn-sm btn-success">

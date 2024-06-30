@@ -36,8 +36,8 @@
                     <tr>
                         <th class="text-center" style="width:40px" scope="col">#</th>
                         <th class="text-center" style="width:90px" scope="col">Hình</th>
-                        <th scope="col">Tên đăng nhập</th>
                         <th scope="col">Họ tên</th>
+                        <th scope="col">Tên đăng nhập</th>
                         <th scope="col">Email</th>
                         <th scope="col">Điện thoại</th>
                         <th scope="col">Role</th>

@@ -24,7 +24,7 @@ class ProductNew extends Component
     {
         $product_list= Product::where('status','=',1)
             ->orderBy('created_at','desc')
-            ->limit(5)
+            ->limit(4)
             ->get();
         return view('components.product-new',compact('product_list'));
     }

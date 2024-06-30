@@ -41,6 +41,13 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="username">Tên đăng nhập</label>
+                            <input type="text" value="{{ old('name',$user->username) }}" name="username" id="name" class="form-control">
+                            @error('name')
+                            <span class="text-danger">{{ $message}}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="phone">Điện thoại</label>
                             <input type="text" value="{{ old('name',$user->phone) }}" name="phone" id="phone" class="form-control">
                             @error('phone')

@@ -5,7 +5,7 @@
     
     
       <div class="container-contact">
-          <h2>Contact Us</h2>
+          <h2 class="text-light">Contact Us</h2>
           <form action="#" method="post">
             <label for="fname">First Name</label>
             <input type="text" id="fname" name="firstname" placeholder="Your first name..">
@@ -39,7 +39,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link

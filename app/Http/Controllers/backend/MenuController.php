@@ -185,7 +185,11 @@ class MenuController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $menu = Menu::find($id);
+        if ($menu == null) {
+            return redirect()->route('admin.menu.index');
+        }
+        return view("backend.menu.show", compact("menu"));
     }
 
     /**
@@ -193,22 +197,94 @@ class MenuController extends Controller
      */
     public function edit(string $id)
     {
-        //
-    }
+        $menu = Menu::find($id);
+        if (!$menu) {
+            return redirect()->route('admin.menu.index');
+        }
+        $categories = Category::all();
+        $brands = Brand::all();
+        $topics = Topic::all();
+        $pages = Post::where('type', 'page')->get();
+        $posts = Post::where('type', 'post')->get();
+        $list = Menu::where('status', '!=', 0)
+            ->orderBy('created_at', 'DESC')
+            ->select('id', 'link', 'name', 'position', 'status')
+            ->get();
 
+        return view('backend.menu.edit', compact('menu', 'list', 'categories', 'brands', 'topics', 'pages', 'posts'));
+    }
     /**
      * Cập nhật tài nguyên cụ thể.
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $menu = Menu::find($id);
+        if (!$menu) {
+            return redirect()->route('admin.menu.index');
+        }
+        $menu->name = $request->name;
+        $menu->link = $request->link;
+        $menu->position = $request->position;
+        $menu->status = $request->status;
+        $menu->updated_by = Auth::id() ?? 1;
+        $menu->save();
+        return redirect()->route('admin.menu.index')->with('success', 'Menu đã được cập nhật thành công.');
 
+    }
+    public function trash(){
+        $list = Menu::where('status', '=', '0')
+            ->orderBy('created_at', 'DESC')
+            ->select('id', 'link', 'name', 'position', 'status')
+            ->get();
+        return view('backend.menu.trash', compact('list'));
+    }
+    public function restore(string $id)
+    {
+        $menu = Menu::find($id);
+        if ($menu == null) {
+            return redirect()->route('admin.menu.index');
+        }
+        $menu->status = 2;
+        $menu->updated_at = date('Y-m-d H:i:s');
+        $menu->updated_by = Auth::id() ?? 1;
+
+        $menu->save();
+        return redirect()->route('admin.menu.trash');
+    }
     /**
      * Xóa tài nguyên cụ thể.
      */
     public function destroy(string $id)
     {
-        //
+        $menu = Menu::find($id);
+        if ($menu == null) {
+            return redirect()->route('admin.menu.index');
+        }
+        $menu->delete();
+        return redirect()->route('admin.menu.trash');
+    }
+    public function delete(string $id)
+    {
+        $menu = Menu::find($id);
+        if ($menu == null) {
+            return redirect()->route('admin.menu.index');
+        }
+        $menu->status = 0;
+        $menu->updated_at = date('Y-m-d H:i:s');
+        $menu->updated_by = Auth::id() ?? 1;
+
+        $menu->save();
+        return redirect()->route('admin.menu.index');
+    }
+    public function status($id)
+    {
+        $menu = Menu::find($id);
+        if ($menu) {
+            // Đảo ngược trạng thái từ 1 sang 2 và ngược lại
+            $menu->status = $menu->status == 1 ? 2 : 1;
+            $menu->save();
+        }
+
+        return redirect()->route('admin.menu.index');
     }
 }

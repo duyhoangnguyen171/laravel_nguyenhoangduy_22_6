@@ -1,7 +1,7 @@
 @foreach($category_list as $cat_row)
-<div class="section_product_category my-5 py-4">
+<div class="section_product_category my-5">
     <div class="container">
-        <h1>{{$cat_row->name}}</h1>
+        <h1 class="text-center mb-3 bg-danger p-2 text-white bg-opacity-70">{{$cat_row->name}}</h1>
         <div class="row">
             <div class="col-md">
                 <x-product-category :catrow="$cat_row" />

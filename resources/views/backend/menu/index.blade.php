@@ -24,7 +24,7 @@
                     <a class="btn btn-sm btn-success" href="{{ route('admin.menu.create')}}">
                         <i class="fas fa-plus"> Thêm</i>
                     </a>
-                    <a class="btn btn-sm btn-danger" href="{{route('admin.category.trash')}}">
+                    <a class="btn btn-sm btn-danger" href="{{route('admin.menu.trash')}}">
                         <i class="fas fa-trash"> Thùng rác</i>
                     </a>
                 </div>
@@ -196,11 +196,11 @@
                                 <td>{{$row->position}}</td>
                                 <td class="text-center">
                                     @if($row->status==1)
-                                    <a href="{{route ('admin.category.status', $args)}}" class="btn btn-sm btn-success">
+                                    <a href="{{route ('admin.menu.status', $args)}}" class="btn btn-sm btn-success">
                                         <i class="fas fa-toggle-on"></i>
                                     </a>
                                     @else
-                                    <a href="{{route ('admin.category.status', $args)}}" class="btn btn-sm btn-danger">
+                                    <a href="{{route ('admin.menu.status', $args)}}" class="btn btn-sm btn-danger">
                                         <i class="fas fa-toggle-off"></i>
                                     </a>
                                     @endif

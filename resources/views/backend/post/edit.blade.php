@@ -39,6 +39,20 @@
                     @enderror
                 </div>
                 <div class="mb-3">
+                    <label for="description">Mô tả</label>
+                    <input type="text" value="{{ old('name',$post->description) }}" name="description" id="description" class="form-control">
+                    @error('title')
+                    <span class="text-danger">{{ $message}}</span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="detail">Chi tiết bài viết</label>
+                    <input type="text" value="{{ old('name',$post->detail) }}" name="detail" id="detail" class="form-control">
+                    @error('title')
+                    <span class="text-danger">{{ $message}}</span>
+                    @enderror
+                </div>
+                <div class="mb-3">
                 <label for="topicname">Chủ đề</label>
                     <input type="text" value="{{ old('name',$post->topicname) }}" name="topicname" id="topicname" class="form-control">
                     @error('title')

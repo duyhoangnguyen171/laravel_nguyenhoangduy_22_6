@@ -7,6 +7,7 @@ html, body {
 
   .a{
     text-decoration: none;
+    color: #f2f2f2;
   }
   
   
@@ -445,3 +446,44 @@ html, body {
     color: white;
     background-color: #402e2e;
   }
+  .text-navy {
+    color: navy;
+}
+.subscribe-button {
+    background-color: navy;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.subscribe-button:hover {
+    background-color: darkblue;
+}
+.contact-net button {
+    background: none;
+    border: none;
+    color: navy;
+    font-size: 1.5rem;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.pay img {
+    width: 50px;
+    margin-right: 10px;
+}
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+.footer ul a {
+    text-decoration: none;
+    color: black;
+}
+.footer ul a:hover {
+    text-decoration: underline;
+}
+.map img {
+    width: 100%;
+    max-width: 150px;
+    margin-top: 10px;
+}
